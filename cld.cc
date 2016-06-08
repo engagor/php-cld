@@ -11,7 +11,10 @@ PHP_MINIT_FUNCTION(cld) {
 
 static PHP_FUNCTION(compact_language_detect);
 
-ZEND_BEGIN_ARG_INFO(arginfo_compact_language_detect, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_compact_language_detect, 0, 0, 1)
+    ZEND_ARG_INFO(0, text)
+    ZEND_ARG_INFO(0, is_plain_text)
+    ZEND_ARG_INFO(0, tld_hint)
 ZEND_END_ARG_INFO()
 
 static const zend_function_entry cld_functions[] = {
@@ -44,14 +47,11 @@ ZEND_GET_MODULE(cld)
 }
 #endif
 
-static PHP_FUNCTION(compact_language_detect)
-{
-    bool is_plain_text = true;
+static PHP_FUNCTION(compact_language_detect) {
     bool do_allow_extended_languages = true;
     bool do_pick_summary_language = false;
     bool do_remove_weak_matches = false;
     bool is_reliable;
-    const char* tld_hint = NULL;
     int encoding_hint = UNKNOWN_ENCODING;
     Language language_hint = UNKNOWN_LANGUAGE;
 
@@ -60,10 +60,13 @@ static PHP_FUNCTION(compact_language_detect)
     int percent3[3];
     int text_bytes;
 
+    zend_bool is_plain_text = 0;
     char *str;
     size_t str_len;
+    char* tld_hint = NULL;
+    size_t tld_hint_len;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &str, &str_len) == FAILURE) {
+    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s|bs", &str, &str_len, &is_plain_text, &tld_hint, &tld_hint_len) == FAILURE) {
         return;
     }
 

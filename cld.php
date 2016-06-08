@@ -1,7 +1,7 @@
 <?php
 
-$functions = get_extension_funcs('cld');
-print_r ($functions);
+
+print_r (get_extension_funcs('cld'));
 
 $args = array (
     "Ik ben erg hongerig",
@@ -26,5 +26,5 @@ $args = array (
 );
 
 foreach ($args as $arg) {
-    echo $arg . ": " . compact_language_detect($arg) . "\n";
+    echo $arg . ": " . compact_language_detect($arg) . ":" . compact_language_detect($arg, true, "jp") . "\n";
 }

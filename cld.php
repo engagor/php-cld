@@ -26,5 +26,5 @@ $args = array (
 );
 
 foreach ($args as $arg) {
-    echo $arg . ": " . simple_detect($arg) . "\n";
+    echo $arg . ": " . compact_language_detect($arg) . "\n";
 }

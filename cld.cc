@@ -9,13 +9,13 @@ PHP_MINIT_FUNCTION(cld) {
     return SUCCESS;
 }
 
-static PHP_FUNCTION(simple_detect);
+static PHP_FUNCTION(compact_language_detect);
 
-ZEND_BEGIN_ARG_INFO(arginfo_simple_detect, 0)
+ZEND_BEGIN_ARG_INFO(arginfo_compact_language_detect, 0)
 ZEND_END_ARG_INFO()
 
 static const zend_function_entry cld_functions[] = {
-    PHP_FE(simple_detect, arginfo_simple_detect)
+    PHP_FE(compact_language_detect, arginfo_compact_language_detect)
     PHP_FE_END
 };
 
@@ -44,7 +44,7 @@ ZEND_GET_MODULE(cld)
 }
 #endif
 
-static PHP_FUNCTION(simple_detect)
+static PHP_FUNCTION(compact_language_detect)
 {
     bool is_plain_text = true;
     bool do_allow_extended_languages = true;

@@ -90,5 +90,5 @@ static PHP_FUNCTION(compact_language_detect) {
                                           &text_bytes,
                                           &is_reliable);
 
-    RETURN_STRING(LanguageName(lang))
+    RETURN_STRING(LanguageCode(lang))
 }
